@@ -2,7 +2,7 @@
 
 ## [Installation]
 ```
-sudo git clone https://github.com/k1lly-git/simple_file_tracker
+git clone https://github.com/k1lly-git/simple_file_tracker
 cd simple_file_tracker
 
 sudo sed -i s/LOCAL_USER=\"USER\"/LOCAL_USER=\"$USER\"/ "tracker.sh"
