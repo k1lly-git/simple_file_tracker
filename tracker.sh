@@ -18,9 +18,6 @@ checkDir()
 if ! [ -d $MAIN_DIR ]
 then
   mkdir $MAIN_DIR
-  echo "[+] $MAIN_DIR created"
-else
-  echo "[+] $MAIN_DIR found"
 fi
 }
 
@@ -30,9 +27,6 @@ if ! [ -f $SNAPSHOT ]
 then
   find /home/$LOCAL_USER/ -printf "%p\n" 2> /dev/null > $SNAPSHOT
   # ls -Rd "/home/$LOCAL_USER/*" > $SNAPSHOT
-  echo "[+] $SNAPSHOT created"
-else
-  echo "[+] $SNAPSHOT found"
 fi
 }
 
@@ -42,10 +36,7 @@ if ! [ -f $LOGFILE ]
 then
   touch $LOGFILE
   echo "$DATE_VAR tracker.log created" >> $LOGFILE
-  echo "[+] $LOGFILE created"
   exit 0
-else
-  echo "[+] $LOGFILE found"
 fi
 }
 
