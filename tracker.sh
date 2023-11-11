@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# CHANGE THIS
+# ----------------------
+LOCAL_USER="k1lly"
+# ----------------------
+
 MAIN_DIR="/opt/tracker"
 SNAPSHOT="/opt/tracker/snap.txt"
 LOGFILE="/var/log/tracker.log"
@@ -20,7 +25,8 @@ checkSnap()
 {
 if ! [ -f $SNAPSHOT ]
 then
-  ls -R "/home/k1lly" > $SNAPSHOT
+  find /home/$LOCAL_USER/ -printf "%p\n" 2> /dev/null > $SNAPSHOT
+  # ls -Rd "/home/$LOCAL_USER/*" > $SNAPSHOT
   echo "[+] $SNAPSHOT created"
 else
   echo "[+] $SNAPSHOT found"
@@ -41,10 +47,12 @@ fi
 }
 
 
-
+# INIT
 checkDir
 checkSnap
 checkLog
+
+
 
 
 
