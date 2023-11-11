@@ -6,9 +6,12 @@ LOCAL_USER="k1lly"
 # ----------------------
 
 MAIN_DIR="/opt/tracker"
-SNAPSHOT="/opt/tracker/snap.txt"
 LOGFILE="/var/log/tracker.log"
 TIME_MASK="+[%Y-%m-%d %H:%M]"
+DATE_VAR=$(date "$TIME_MASK")
+SNAPSHOT="/opt/tracker/snap.txt"
+SNAPSHOT_2="/opt/tracker/snap_2.txt"
+DIFF_FILE="/opt/tracker/diff_files.txt"
 
 checkDir()
 {
@@ -38,20 +41,36 @@ checkLog()
 if ! [ -f $LOGFILE ]
 then
   touch $LOGFILE
-  DATE_VAR=$(date "$TIME_MASK")
   echo "$DATE_VAR tracker.log created" >> $LOGFILE
   echo "[+] $LOGFILE created"
+  exit 0
 else
   echo "[+] $LOGFILE found"
 fi
 }
 
+getDiffFiles()
+{
+  find /home/$LOCAL_USER/ -printf "%p\n" 2> /dev/null > $SNAPSHOT_2
+  diff $SNAPSHOT $SNAPSHOT_2 | awk '/^>/ { print $2}' | sort -u > $DIFF_FILE
+}
 
 # INIT
 checkDir
 checkSnap
 checkLog
 
+# SCRIPT
+getDiffFiles
+
+IFS=$'\n'
+for str in $(cat $DIFF_FILE)
+do
+  echo "$DATE_VAR $str" >> $LOGFILE
+done
+
+rm $SNAPSHOT
+mv $SNAPSHOT_2 $SNAPSHOT
 
 
 
