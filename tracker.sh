@@ -2,7 +2,7 @@
 
 # CHANGE THIS
 # ----------------------
-LOCAL_USER="k1lly"
+LOCAL_USER="USER"
 # ----------------------
 
 MAIN_DIR="/opt/tracker"
