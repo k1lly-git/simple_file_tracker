@@ -52,7 +52,8 @@ fi
 getDiffFiles()
 {
   find /home/$LOCAL_USER/ -printf "%p\n" 2> /dev/null > $SNAPSHOT_2
-  diff $SNAPSHOT $SNAPSHOT_2 | awk '/^>/' | awk '{ for (i=2; i<=NF; i++) printf "%s ", $i; printf "\n" }' | sort -u > $DIFF_FILE
+  diff $SNAPSHOT $SNAPSHOT_2 | awk '/^>/' | awk '{ for (i=2; i<=NF; i++) printf "%s ", $i; printf "\n" }' > $DIFF_FILE
+#  diff $SNAPSHOT $SNAPSHOT_2 | awk '/^>/' | awk '{ for (i=2; i<=NF; i++) printf "%s ", $i; printf "\n" }' | sort -u > $DIFF_FILE
 #  diff $SNAPSHOT $SNAPSHOT_2 | awk '/^>/ { print $2}' | sort -u > $DIFF_FILE
 }
 

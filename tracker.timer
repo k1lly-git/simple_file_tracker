@@ -2,7 +2,8 @@
 Description=Timer for Simple File Tracker
 
 [Timer]
-OnUnitActiveSec=5s
+OnBootSec=5s
+OnUnitActiveSec=3s
 Unit=tracker.service
 
 [Install]
