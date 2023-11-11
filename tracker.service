@@ -1,0 +1,6 @@
+[Unit]
+Description=Simple script for tracking user created files, dirs and etc...
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash "/usr/local/bin/tracker.sh"

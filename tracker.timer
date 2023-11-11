@@ -1,0 +1,9 @@
+[Unit]
+Description=Timer for Simple File Tracker
+
+[Timer]
+OnUnitActiveSec=5s
+Unit=tracker.service
+
+[Install]
+WantedBy=timers.target
